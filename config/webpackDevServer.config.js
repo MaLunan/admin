@@ -87,7 +87,14 @@ module.exports = function(proxy, allowedHost) {
       disableDotRule: true,
     },
     public: allowedHost,
-    proxy,
+    proxy:{
+      "/api":{
+				target:"http://localhost:3000/admin",//代理的服务地址
+				pathRewrite:{"^/api":""},//重写不需要的后端地址加上/api
+				changeOrigin:true,//允许跨域
+				
+				}
+    },
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons

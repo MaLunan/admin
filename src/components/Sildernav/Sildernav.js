@@ -13,6 +13,27 @@ class Sildernav extends Component{
                     path:'/admin/home',
                     id:'0'
                 },
+                {
+                    name:'商品管理',
+                    icon:'inbox',
+                    path:'inbox',
+                    id:'1',
+                    children:[
+                        {
+                            name:'商品列表',
+                            icon:'block',
+                            path:'/admin/inbox',
+                            id:'1-1',
+                        },
+                        {
+                            name:'商品分类',
+                            icon:'reconciliation',
+                            path:'/admin/classify',
+                            id:'1-2',
+                        }
+                    ]
+
+                }
             ],
         }
     }

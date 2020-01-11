@@ -3,6 +3,7 @@ import {BrowserRouter,NavLink,Link,Switch,Route,Redirect} from 'react-router-dom
 import Login from '../pages/login/login'
 import Admin from '../pages/admin/admin'
 import Home from '../pages/home/home'
+import Inbox from '../pages/inbox/inbox'
 class App extends Component{
   render(){
     return (
@@ -18,11 +19,11 @@ class App extends Component{
                 <Admin>
                   <Switch>
                     <Route path='/admin/home' component={Home}></Route>
+                    <Route path='/admin/inbox' component={Inbox}></Route>
                   </Switch>
                 </Admin>
               )
-            }}>
-            
+            }}> 
             </Route>
         </Switch>
      </BrowserRouter>
