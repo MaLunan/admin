@@ -18,12 +18,11 @@ class Admin extends Component{
             margin: '24px 16px',
             padding: 24,
             background: '#fff',
-            minHeight: 280,
+            minHeight: 1000,
           }}
         >
           {this.props.children}
-        </Content>
-        <Footer>  Footer </Footer>
+        </Content>  
       </Layout>
     </Layout>
     )

@@ -1,6 +1,8 @@
 import React,{Fragment,Component} from 'react';
 import {Drawer,Button}from 'antd'
 import axios from 'axios'
+import { fn } from 'moment';
+let click=true
 class add extends Component{
     constructor(){
         super()
@@ -44,7 +46,7 @@ class add extends Component{
         <label htmlFor='img'>图片：</label><input type='file' ref='file' 
         />
         <br/>  
-        <img src={this.state.goods_img} width="100" height="100" alt=""/>
+        <img src={'http://localhost:3000'+this.state.goods_img} width="100" height="100" alt=""/>
         <button onClick={this.upload}>上传图片</button>
         <br/>  
       </div>
@@ -59,11 +61,24 @@ class add extends Component{
     </Drawer>
     )
   }
+  //图片上传
   upload=()=>{
-    let file=this.refs.file.files[0]
-    let formdata=new FormData()
-    formdata.append('aa',file)
-    console.log(formdata)
+    //节流
+    if(!click) return
+      click=false
+      let file=this.refs.file.files[0]
+      let formdata=new FormData()
+      formdata.append('imgs',file)
+      console.log(formdata.get('imgs'))
+      axios.post('/api/food/upfile?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE2YmE3Zjc0M2MxZTI2ZTA5Y2E2YWEiLCJvdCI6NjA0ODAwMDAwLCJjdGltZSI6MTU3ODU0ODAwMTQzMCwiaWF0IjoxNTc4NTQ4MDAxfQ.yqX3qd1aNN5zz3_bX3L733hXCQteBQstDw2hrv5n-y8',
+        formdata
+      ).then(res=>{
+        this.setState({goods_img:res.data.path})
+      })
+      let tiem=setTimeout(()=>{
+        click=true
+      },8000)
+    
   }
   updatefoods=()=>{
     console.log(this.state)

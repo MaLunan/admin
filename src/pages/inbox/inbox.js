@@ -20,45 +20,58 @@ class Inbox extends Component{
           title: '商品ID',
           dataIndex:'_id',
           width:100,
+         
           ellipsis:true,
           
       },
       {
         title: '商品名称',
         dataIndex: 'goods_name',
-        width:400,
+        width:100,
+        height:50,
       },
       {
         title: '价格',
         dataIndex: 'goods_price',
         width:60,
+        height:50,
         align:'center'
       },
       {
         title: '数量',
         dataIndex: 'goods_number',
         width:60,
+        height:50,
       },
       {
           title: '重量',
           dataIndex: 'goods_weight',
           width:60,
+          height:50,
       },
       {
           title: '商品状态',
           dataIndex: 'goods_state',
+          width:60,
+          height:50,
       },
       {
           title: '添加时间',
           dataIndex: 'add_time',
+          width:60,
+          height:50,
       },
       {
           title: '热销品数量',
           dataIndex: 'hot_mumber',
+          width:60,
+          height:50,
       },
       {
           title: '是否是热销品',
           dataIndex: 'is_promote',
+          width:150,
+          height:50,
           render:(dataIndex)=>{
             if(dataIndex!=='false'){
               return '是'
@@ -66,6 +79,17 @@ class Inbox extends Component{
               return '否'
             }
           }
+      },
+      {
+        title:'商品图片',
+        dataIndex:'goods_img',
+        width:150,
+        height:50,
+        render:(h)=>{
+          return (
+            <img width='50' height='50' src={'http://localhost:3000'+h} alt=''/>
+          )
+        }
       },
       {
           title: '操作',
@@ -146,9 +170,10 @@ class Inbox extends Component{
               this.refs.add.setstate()
             }}
             >添加商品</Button>
-            <Table rowKey={(a)=>{
+            <Table 
+            rowKey={(a)=>{
               return a._id
-            }} dataSource={this.state.foods} columns={this.columns} />;
+            }} dataSource={this.state.foods} columns={this.columns} bordered/>;
           <Add ref='add' showdrawer={this.showdrawer} visible={this.state.visible} getfoods={this.getfoods} addupdate={this.state.addupdate} showaddupdate={this.showaddupdate}></Add>
         </Fragment>
         
